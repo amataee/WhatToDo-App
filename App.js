@@ -60,8 +60,10 @@ export default function App() {
 
    const markTodoComplete = (todoId) => {
       const newTodosItem = todos.map((item) => {
-         if (item.id == todoId) {
+         if (item.id == todoId && item.completed == false) {
             return {...item, completed: true};
+         } else if (item.id == todoId && item.completed == true) {
+            return {...item, completed: false};
          }
          return item;
       });
@@ -76,7 +78,7 @@ export default function App() {
 
    const clearAllTodos = () => {
       if (todos != 0) {
-         Alert.alert("Are you sure?", "delete all?", [
+         Alert.alert("Delete All Todos?", "", [
             {
                text: "No",
             },
@@ -91,12 +93,36 @@ export default function App() {
    const ListItem = ({todo}) => {
       return (
          <View style={styles.listItem}>
-            <View style={{flex: 1}}>
+            {!todo?.completed && (
+               <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
+                  <View style={[styles.actionIcon]}>
+                     <MaterialCommunityIcons
+                        name="checkbox-blank-circle-outline"
+                        size={30}
+                        color={colors.green}
+                     />
+                  </View>
+               </TouchableOpacity>
+            )}
+            {todo?.completed && (
+               <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
+                  <View style={[styles.actionIcon]}>
+                     <MaterialCommunityIcons
+                        name="checkbox-marked-circle-outline"
+                        size={30}
+                        color={colors.green}
+                     />
+                  </View>
+               </TouchableOpacity>
+            )}
+            <View style={{flex: 1, justifyContent: "center"}}>
                <Text
                   style={{
                      fontWeight: "bold",
-                     fontSize: 18,
+                     fontSize: 22,
                      color: colors.primary,
+                     marginHorizontal: 16,
+
                      textDecorationLine: todo?.completed
                         ? "line-through"
                         : "none",
@@ -105,22 +131,11 @@ export default function App() {
                   {todo?.task}
                </Text>
             </View>
-            {!todo?.completed && (
-               <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
-                  <View style={[styles.actionIcon]}>
-                     <MaterialCommunityIcons
-                        name="check"
-                        size={24}
-                        color={colors.green}
-                     />
-                  </View>
-               </TouchableOpacity>
-            )}
             <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
                <View style={styles.actionIcon}>
                   <MaterialCommunityIcons
                      name="close"
-                     size={24}
+                     size={30}
                      color={colors.grayBlue}
                   />
                </View>
@@ -140,7 +155,7 @@ export default function App() {
             <Text
                style={{
                   fontWeight: "bold",
-                  fontSize: 28,
+                  fontSize: 32,
                   color: colors.black,
                }}
             >
@@ -213,19 +228,17 @@ const styles = StyleSheet.create({
       alignItems: "center",
    },
    listItem: {
-      padding: 16,
+      padding: 22,
       backgroundColor: colors.light,
       flexDirection: "row",
       borderRadius: 7,
       marginVertical: 10,
    },
    actionIcon: {
-      height: 25,
-      width: 25,
+      height: 35,
+      width: 35,
       justifyContent: "center",
       alignItems: "center",
-      marginLeft: 5,
-      borderRadius: 3,
    },
    header: {
       marginTop: 32,
