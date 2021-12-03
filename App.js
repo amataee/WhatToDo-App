@@ -168,6 +168,7 @@ export default function App() {
                   placeholderTextColor={colors.dark}
                   selectionColor={colors.dark}
                   onChangeText={(text) => setTextInput(text)}
+                  onEndEditing={addTodo}
                />
             </View>
             <TouchableOpacity onPress={addTodo}>
