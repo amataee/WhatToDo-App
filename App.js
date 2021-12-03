@@ -121,7 +121,7 @@ export default function App() {
                   <MaterialCommunityIcons
                      name="close"
                      size={24}
-                     color={colors.medium}
+                     color={colors.grayBlue}
                   />
                </View>
             </TouchableOpacity>
@@ -166,6 +166,7 @@ export default function App() {
                   value={textInput}
                   placeholder="Add Todo..."
                   placeholderTextColor={colors.dark}
+                  selectionColor={colors.dark}
                   onChangeText={(text) => setTextInput(text)}
                />
             </View>
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
    inputContainer: {
       height: 50,
       paddingHorizontal: 20,
-      backgroundColor: colors.light,
+      backgroundColor: colors.medium,
       flex: 1,
       marginVertical: 20,
       marginRight: 20,
