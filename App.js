@@ -119,7 +119,7 @@ export default function App() {
                <Text
                   style={{
                      fontWeight: "bold",
-                     fontSize: 22,
+                     fontSize: 18,
                      color: colors.primary,
                      marginHorizontal: 16,
 
@@ -184,6 +184,7 @@ export default function App() {
                   selectionColor={colors.dark}
                   onChangeText={(text) => setTextInput(text)}
                   onEndEditing={addTodo}
+                  maxLength={30}
                />
             </View>
             <TouchableOpacity onPress={addTodo}>
