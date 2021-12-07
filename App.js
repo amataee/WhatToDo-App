@@ -1,5 +1,5 @@
 import React from "react";
-import {SafeAreaView, FlatList} from "react-native";
+import {SafeAreaView, FlatList, StyleSheet} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ListItem from "./components/ListItem";
@@ -18,32 +18,19 @@ export default function App() {
    }, [todos]);
 
    const saveTodoToUserDevice = async (todos) => {
-      try {
-         const stringifyTodos = JSON.stringify(todos);
-         await AsyncStorage.setItem("todos", stringifyTodos);
-      } catch (error) {
-         console.log(error);
-      }
+      const stringifyTodos = JSON.stringify(todos);
+      await AsyncStorage.setItem("todos", stringifyTodos);
    };
 
    const getTodosFromUserDevice = async () => {
-      try {
-         const todos = await AsyncStorage.getItem("todos");
-         if (todos != null) {
-            setTodos(JSON.parse(todos));
-         }
-      } catch (error) {
-         console.log(error);
+      const todos = await AsyncStorage.getItem("todos");
+      if (todos != null) {
+         setTodos(JSON.parse(todos));
       }
    };
 
    return (
-      <SafeAreaView
-         style={{
-            flex: 1,
-            backgroundColor: "white",
-         }}
-      >
+      <SafeAreaView style={styles.container}>
          <MenuBar todos={todos} setTodos={setTodos} />
          <FlatList
             showsVerticalScrollIndicator={false}
@@ -57,3 +44,10 @@ export default function App() {
       </SafeAreaView>
    );
 }
+
+const styles = StyleSheet.create({
+   container: {
+      flex: 1,
+      backgroundColor: "white",
+   },
+});
