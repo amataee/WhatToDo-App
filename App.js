@@ -1,23 +1,13 @@
 import React from "react";
-import {
-   StyleSheet,
-   SafeAreaView,
-   View,
-   TextInput,
-   Text,
-   FlatList,
-   TouchableOpacity,
-   Alert,
-} from "react-native";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {SafeAreaView, FlatList} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ListItem from "./components/ListItem";
-import colors from "./app/config/colors";
+import MenuBar from "./components/MenuBar";
+import BottomInputContainer from "./components/BottomInputContainer";
 
 export default function App() {
    const [todos, setTodos] = React.useState([]);
-   const [textInput, setTextInput] = React.useState("");
 
    React.useEffect(() => {
       getTodosFromUserDevice();
@@ -26,18 +16,6 @@ export default function App() {
    React.useEffect(() => {
       saveTodoToUserDevice(todos);
    }, [todos]);
-
-   const addTodo = () => {
-      if (textInput != "") {
-         const newTodo = {
-            id: Math.random(),
-            task: textInput,
-            completed: false,
-         };
-         setTodos([...todos, newTodo]);
-         setTextInput("");
-      }
-   };
 
    const saveTodoToUserDevice = async (todos) => {
       try {
@@ -59,20 +37,6 @@ export default function App() {
       }
    };
 
-   const clearAllTodos = () => {
-      if (todos != 0) {
-         Alert.alert("Delete All Todos?", "", [
-            {
-               text: "No",
-            },
-            {
-               text: "Yes",
-               onPress: () => setTodos([]),
-            },
-         ]);
-      }
-   };
-
    return (
       <SafeAreaView
          style={{
@@ -80,23 +44,7 @@ export default function App() {
             backgroundColor: "white",
          }}
       >
-         <View style={styles.header}>
-            <Text
-               style={{
-                  fontWeight: "bold",
-                  fontSize: 32,
-                  color: colors.black,
-               }}
-            >
-               WhatToDo
-            </Text>
-            <MaterialCommunityIcons
-               name="trash-can-outline"
-               size={32}
-               color={colors.lightDanger}
-               onPress={clearAllTodos}
-            />
-         </View>
+         <MenuBar todos={todos} setTodos={setTodos} />
          <FlatList
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{padding: 20, paddingBottom: 100}}
@@ -105,65 +53,7 @@ export default function App() {
                <ListItem todo={item} todos={todos} setTodos={setTodos} />
             )}
          />
-
-         <View style={styles.footer}>
-            <View style={styles.inputContainer}>
-               <TextInput
-                  value={textInput}
-                  placeholder="Add Todo..."
-                  placeholderTextColor={colors.dark}
-                  selectionColor={colors.dark}
-                  onChangeText={(text) => setTextInput(text)}
-                  onEndEditing={addTodo}
-                  maxLength={30}
-               />
-            </View>
-            <TouchableOpacity onPress={addTodo}>
-               <View style={styles.iconContainer}>
-                  <MaterialCommunityIcons
-                     name="plus"
-                     color={colors.white}
-                     size={30}
-                  />
-               </View>
-            </TouchableOpacity>
-         </View>
+         <BottomInputContainer todos={todos} setTodos={setTodos} />
       </SafeAreaView>
    );
 }
-
-const styles = StyleSheet.create({
-   footer: {
-      position: "absolute",
-      bottom: 10,
-      width: "100%",
-      flexDirection: "row",
-      alignItems: "center",
-      paddingHorizontal: 12,
-   },
-   inputContainer: {
-      height: 50,
-      paddingHorizontal: 20,
-      backgroundColor: colors.medium,
-      flex: 1,
-      marginVertical: 20,
-      marginRight: 20,
-      borderRadius: 15,
-      justifyContent: "center",
-   },
-   iconContainer: {
-      height: 50,
-      width: 50,
-      backgroundColor: colors.grayBlue,
-      borderRadius: 20,
-      justifyContent: "center",
-      alignItems: "center",
-   },
-   header: {
-      marginTop: 32,
-      marginHorizontal: 20,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-   },
-});
