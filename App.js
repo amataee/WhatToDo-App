@@ -2,9 +2,9 @@ import React from "react";
 import {SafeAreaView, FlatList, StyleSheet} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import ListItem from "./components/ListItem";
-import MenuBar from "./components/MenuBar";
-import BottomInputContainer from "./components/BottomInputContainer";
+import ListItem from "./app/components/ListItem";
+import MenuBar from "./app/components/MenuBar";
+import BottomInputContainer from "./app/components/BottomInputContainer";
 
 export default function App() {
    const [todos, setTodos] = React.useState([]);

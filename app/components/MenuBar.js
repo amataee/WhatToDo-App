@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, Text, View, Alert} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
-import colors from "../app/config/colors";
+import colors from "../config/colors";
 
 export default function MenuBar({todos, setTodos}) {
    const clearAllTodos = () => {

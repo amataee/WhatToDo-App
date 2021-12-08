@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, View, TextInput, TouchableOpacity} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
-import colors from "../app/config/colors";
+import colors from "../config/colors";
 
 export default function BottomInputContainer({todos, setTodos}) {
    const [textInput, setTextInput] = React.useState("");
