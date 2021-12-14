@@ -4,9 +4,12 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-export default function BottomInputContainer({todos, setTodos}) {
-   const [textInput, setTextInput] = React.useState("");
-
+export default function BottomInputContainer({
+   todos,
+   setTodos,
+   textInput,
+   setTextInput,
+}) {
    const addTodo = () => {
       if (textInput != "") {
          const newTodo = {
@@ -29,7 +32,7 @@ export default function BottomInputContainer({todos, setTodos}) {
                selectionColor={colors.dark}
                onChangeText={(text) => setTextInput(text)}
                onEndEditing={addTodo}
-               maxLength={30}
+               maxLength={50}
             />
          </View>
          <TouchableOpacity onPress={addTodo}>
@@ -48,7 +51,7 @@ export default function BottomInputContainer({todos, setTodos}) {
 const styles = StyleSheet.create({
    bottom: {
       position: "absolute",
-      bottom: 10,
+      bottom: 0,
       width: "100%",
       flexDirection: "row",
       alignItems: "center",
@@ -61,14 +64,14 @@ const styles = StyleSheet.create({
       flex: 1,
       marginVertical: 20,
       marginRight: 20,
-      borderRadius: 15,
+      borderRadius: 12,
       justifyContent: "center",
    },
    iconContainer: {
       height: 50,
       width: 50,
       backgroundColor: colors.grayBlue,
-      borderRadius: 20,
+      borderRadius: 12,
       justifyContent: "center",
       alignItems: "center",
    },

@@ -24,7 +24,7 @@ export default function MenuBar({todos, setTodos}) {
          <Text
             style={{
                fontWeight: "bold",
-               fontSize: 32,
+               fontSize: 26,
                color: colors.black,
             }}
          >

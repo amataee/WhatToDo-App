@@ -8,6 +8,7 @@ import BottomInputContainer from "./app/components/BottomInputContainer";
 
 export default function App() {
    const [todos, setTodos] = React.useState([]);
+   const [textInput, setTextInput] = React.useState("");
 
    React.useEffect(() => {
       getTodosFromUserDevice();
@@ -37,10 +38,21 @@ export default function App() {
             contentContainerStyle={{padding: 20, paddingBottom: 100}}
             data={todos}
             renderItem={({item}) => (
-               <ListItem todo={item} todos={todos} setTodos={setTodos} />
+               <ListItem
+                  todo={item}
+                  todos={todos}
+                  setTodos={setTodos}
+                  textInput={textInput}
+                  setTextInput={setTextInput}
+               />
             )}
          />
-         <BottomInputContainer todos={todos} setTodos={setTodos} />
+         <BottomInputContainer
+            todos={todos}
+            setTodos={setTodos}
+            textInput={textInput}
+            setTextInput={setTextInput}
+         />
       </SafeAreaView>
    );
 }
