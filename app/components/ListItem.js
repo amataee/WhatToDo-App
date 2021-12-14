@@ -16,6 +16,10 @@ import AppButton from "./AppButton";
 
 export default function ListItem({todo, todos, setTodos}) {
    const [visible, setVisible] = React.useState(false);
+   const [todoTitle, setTodoTitle] = React.useState(todo?.task);
+   const [TodoTitleFromTextInput, setTodoTitleFromTextInput] = React.useState(
+      todo?.task
+   );
 
    const showModal = () => setVisible(true);
    const hideModal = () => setVisible(false);
@@ -39,20 +43,14 @@ export default function ListItem({todo, todos, setTodos}) {
       setTodos(newTodosItem);
    };
 
-   const [todoTitle, setTodoTitle] = React.useState(todo?.task);
-   const [TodoTitleFromTextInput, setTodoTitleFromTextInput] = React.useState(
-      todo?.task
-   );
-
    const editTodo = (todoId) => {
       const newTodosItem = todos.map((item) => {
          if (item.id == todoId) {
-            return {...item, task: todoTitle};
+            return {...item, task: TodoTitleFromTextInput};
          }
          return item;
       });
       setTodos(newTodosItem);
-      hideModal();
    };
 
    return (
@@ -132,6 +130,7 @@ export default function ListItem({todo, todos, setTodos}) {
                      title={"DONE"}
                      onPress={() => {
                         setTodoTitle(TodoTitleFromTextInput);
+                        editTodo(todo.id);
                         hideModal();
                      }}
                   />
@@ -155,47 +154,5 @@ const styles = StyleSheet.create({
       width: 35,
       justifyContent: "center",
       alignItems: "center",
-   },
-   //modal,
-   centeredView: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 22,
-   },
-   modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-         width: 0,
-         height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-   },
-   button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2,
-   },
-   buttonOpen: {
-      backgroundColor: "#F194FF",
-   },
-   buttonClose: {
-      backgroundColor: "#2196F3",
-   },
-   textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center",
-   },
-   modalText: {
-      marginBottom: 15,
-      textAlign: "center",
    },
 });
