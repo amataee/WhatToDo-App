@@ -128,6 +128,7 @@ export default function ListItem({todo, todos, setTodos}) {
                   </AppTextInput>
                   <AppButton
                      title={"DONE"}
+                     icon={"checkmark-outline"}
                      onPress={() => {
                         setTodoTitle(TodoTitleFromTextInput);
                         editTodo(todo.id);
@@ -143,7 +144,7 @@ export default function ListItem({todo, todos, setTodos}) {
 
 const styles = StyleSheet.create({
    listItem: {
-      padding: 16,
+      padding: 18,
       backgroundColor: colors.light,
       flexDirection: "row",
       borderRadius: 12,

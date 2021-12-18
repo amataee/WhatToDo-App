@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, Text, View, Alert} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import colors from "../config/colors";
 
@@ -30,11 +31,12 @@ export default function MenuBar({todos, setTodos}) {
          >
             WhatToDo
          </Text>
-         <MaterialCommunityIcons
-            name="trash-can-outline"
+         <Ionicons
+            name={"trash"}
             size={32}
             color={colors.lightDanger}
             onPress={clearAllTodos}
+            style={{paddingBottom: 10}}
          />
       </View>
    );
@@ -42,7 +44,7 @@ export default function MenuBar({todos, setTodos}) {
 
 const styles = StyleSheet.create({
    menuBar: {
-      marginTop: 32,
+      marginTop: 30,
       marginHorizontal: 20,
       flexDirection: "row",
       alignItems: "center",

@@ -18,6 +18,8 @@ function AppTextInput({icon, ...otherProps}) {
          <TextInput
             placeholderTextColor={colors.medium}
             style={styles.text}
+            maxLength={50}
+            selectionColor={colors.medium}
             {...otherProps}
          />
       </View>
