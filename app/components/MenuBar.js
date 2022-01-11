@@ -25,18 +25,18 @@ export default function MenuBar({todos, setTodos}) {
          <Text
             style={{
                fontWeight: "bold",
-               fontSize: 26,
-               color: colors.black,
+               fontSize: 24,
+               color: colors.primary,
             }}
          >
             WhatToDo
          </Text>
          <Ionicons
             name={"trash"}
-            size={32}
+            size={30}
             color={colors.lightDanger}
             onPress={clearAllTodos}
-            style={{paddingBottom: 10}}
+            style={{paddingBottom: 8}}
          />
       </View>
    );
@@ -44,8 +44,8 @@ export default function MenuBar({todos, setTodos}) {
 
 const styles = StyleSheet.create({
    menuBar: {
-      marginTop: 30,
-      marginHorizontal: 20,
+      marginTop: 28,
+      marginHorizontal: 16,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",

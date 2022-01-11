@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, View, TextInput, TouchableOpacity} from "react-native";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {Ionicons} from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
@@ -37,11 +37,7 @@ export default function BottomInputContainer({
          </View>
          <TouchableOpacity onPress={addTodo}>
             <View style={styles.iconContainer}>
-               <MaterialCommunityIcons
-                  name="plus"
-                  color={colors.white}
-                  size={30}
-               />
+               <Ionicons name="add-outline" color={colors.white} size={30} />
             </View>
          </TouchableOpacity>
       </View>
@@ -64,14 +60,14 @@ const styles = StyleSheet.create({
       flex: 1,
       marginVertical: 20,
       marginRight: 20,
-      borderRadius: 12,
+      borderRadius: 20,
       justifyContent: "center",
    },
    iconContainer: {
       height: 50,
       width: 50,
       backgroundColor: colors.grayBlue,
-      borderRadius: 12,
+      borderRadius: 20,
       justifyContent: "center",
       alignItems: "center",
    },
