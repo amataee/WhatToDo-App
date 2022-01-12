@@ -35,7 +35,7 @@ export default function App() {
          <MenuBar todos={todos} setTodos={setTodos} />
          <FlatList
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{padding: 20, paddingBottom: 100}}
+            contentContainerStyle={{padding: 16, paddingBottom: 100}}
             data={todos}
             renderItem={({item}) => (
                <ListItem todo={item} todos={todos} setTodos={setTodos} />

@@ -144,10 +144,10 @@ export default function ListItem({todo, todos, setTodos}) {
 
 const styles = StyleSheet.create({
    listItem: {
-      padding: 18,
+      padding: 17,
       backgroundColor: colors.light,
       flexDirection: "row",
-      borderRadius: 12,
+      borderRadius: 16,
       marginVertical: 10,
    },
    actionIcon: {
