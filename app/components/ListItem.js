@@ -58,8 +58,8 @@ export default function ListItem({todo, todos, setTodos}) {
          {!todo?.completed && (
             <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
                <View style={[styles.actionIcon]}>
-                  <MaterialCommunityIcons
-                     name="checkbox-blank-circle-outline"
+                  <Ionicons
+                     name="ellipse-outline"
                      size={30}
                      color={colors.green}
                   />
@@ -69,8 +69,8 @@ export default function ListItem({todo, todos, setTodos}) {
          {todo?.completed && (
             <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
                <View style={[styles.actionIcon]}>
-                  <MaterialCommunityIcons
-                     name="checkbox-marked-circle-outline"
+                  <Ionicons
+                     name="checkmark-circle-outline"
                      size={30}
                      color={colors.green}
                   />
@@ -96,11 +96,7 @@ export default function ListItem({todo, todos, setTodos}) {
          </View>
          <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
             <View style={styles.actionIcon}>
-               <MaterialCommunityIcons
-                  name="close"
-                  size={30}
-                  color={colors.grayBlue}
-               />
+               <Ionicons name="close" size={30} color={colors.grayBlue} />
             </View>
          </TouchableOpacity>
          <Modal
@@ -117,7 +113,12 @@ export default function ListItem({todo, todos, setTodos}) {
                }}
             >
                <TouchableOpacity onPress={hideModal}>
-                  <Ionicons name="close" size={42} color={colors.dark} />
+                  <Ionicons
+                     name="close"
+                     size={42}
+                     color={colors.grayBlue}
+                     style={{marginTop: 32}}
+                  />
                </TouchableOpacity>
                <View style={{marginTop: 18, width: "100%"}}>
                   <AppTextInput

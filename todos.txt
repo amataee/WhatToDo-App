@@ -1,0 +1,7 @@
+* Preferences Page
+* Sign up and login section in Preferences Page
+* Firebase Authentication
+* Firebase Todos Database
+* Dark Mode
+* Persian lang
+* Persian font (Maybe Vazir!)

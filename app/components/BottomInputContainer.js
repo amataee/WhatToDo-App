@@ -47,7 +47,7 @@ export default function BottomInputContainer({
 const styles = StyleSheet.create({
    bottom: {
       position: "absolute",
-      bottom: 0,
+      bottom: 4,
       width: "100%",
       flexDirection: "row",
       alignItems: "center",
