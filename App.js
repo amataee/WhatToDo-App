@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import ListItem from "./app/components/ListItem";
 import MenuBar from "./app/components/MenuBar";
 import BottomInputContainer from "./app/components/BottomInputContainer";
+import colors from "./app/config/colors";
 
 export default function App() {
    const [todos, setTodos] = React.useState([]);
@@ -35,7 +36,7 @@ export default function App() {
          <MenuBar todos={todos} setTodos={setTodos} />
          <FlatList
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{padding: 16, paddingBottom: 100}}
+            contentContainerStyle={styles.flatList}
             data={todos}
             renderItem={({item}) => (
                <ListItem todo={item} todos={todos} setTodos={setTodos} />
@@ -54,6 +55,10 @@ export default function App() {
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      backgroundColor: "white",
+      backgroundColor: colors.white,
+   },
+   flatList: {
+      padding: 16,
+      paddingBottom: 100,
    },
 });
