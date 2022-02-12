@@ -1,20 +1,14 @@
 import React from "react";
-import {StyleSheet, Text, View, TouchableOpacity, Modal} from "react-native";
+import {StyleSheet, TextInput, View, TouchableOpacity} from "react-native";
 
 import colors from "../config/colors";
-import AppTextInput from "./AppTextInput";
-import AppButton from "./AppButton";
 import AppIcon from "./AppIcon";
 
 export default function ListItem({todo, todos, setTodos}) {
-   const [visible, setVisible] = React.useState(false);
    const [todoTitle, setTodoTitle] = React.useState(todo?.task);
    const [TodoTitleFromTextInput, setTodoTitleFromTextInput] = React.useState(
       todo?.task
    );
-
-   const showModal = () => setVisible(true);
-   const hideModal = () => setVisible(false);
 
    const markTodoComplete = (todoId) => {
       const newTodosItem = todos.map((item) => {
@@ -29,11 +23,6 @@ export default function ListItem({todo, todos, setTodos}) {
       setTodos(newTodosItem);
    };
 
-   const deleteTodo = (todoId) => {
-      const newTodosItem = todos.filter((item) => item.id != todoId);
-      setTodos(newTodosItem);
-   };
-
    const editTodo = (todoId) => {
       const newTodosItem = todos.map((item) => {
          if (item.id == todoId) {
@@ -44,92 +33,52 @@ export default function ListItem({todo, todos, setTodos}) {
       setTodos(newTodosItem);
    };
 
+   const deleteTodo = (todoId) => {
+      const newTodosItem = todos.filter((item) => item.id != todoId);
+      setTodos(newTodosItem);
+   };
+
    return (
       <View style={styles.listItem}>
-         {!todo?.completed && (
-            <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
-               <View style={[styles.actionIcon]}>
-                  <AppIcon
-                     name="ellipse-outline"
-                     size={30}
-                     color={colors.green}
-                  />
-               </View>
-            </TouchableOpacity>
-         )}
-         {todo?.completed && (
-            <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
-               <View style={[styles.actionIcon]}>
-                  <AppIcon
-                     name="checkmark-circle-outline"
-                     size={30}
-                     color={colors.green}
-                  />
-               </View>
-            </TouchableOpacity>
-         )}
-         <View style={{flex: 1, justifyContent: "center"}}>
-            <TouchableOpacity onPress={showModal}>
-               <Text
-                  style={{
-                     fontWeight: "bold",
-                     fontSize: 18,
-                     color: colors.primary,
-                     marginHorizontal: 5,
-                     textDecorationLine: todo?.completed
-                        ? "line-through"
-                        : "none",
-                  }}
-               >
-                  {todoTitle}
-               </Text>
-            </TouchableOpacity>
-         </View>
-         <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
-            <View style={styles.actionIcon}>
-               <AppIcon name="close" size={30} color={colors.grayBlue} />
-            </View>
-         </TouchableOpacity>
-         <Modal
-            animationType="slide"
-            visible={visible}
-            onDismiss={hideModal}
-            contentContainerStyle={styles.modal}
+         <TouchableOpacity
+            onPress={() => markTodoComplete(todo.id)}
+            style={[styles.actionIcon]}
          >
-            <View
-               style={{
-                  alignItems: "center",
-                  marginHorizontal: 18,
-                  marginTop: 18,
-               }}
-            >
-               <TouchableOpacity onPress={hideModal}>
-                  <AppIcon
-                     name="close"
-                     size={42}
-                     color={colors.grayBlue}
-                     style={{marginTop: 16}}
-                  />
-               </TouchableOpacity>
-               <View style={{marginTop: 18, width: "100%"}}>
-                  <AppTextInput
-                     focusable
-                     onChangeText={(text) => setTodoTitleFromTextInput(text)}
-                  >
-                     {todoTitle}
-                  </AppTextInput>
-                  <AppButton
-                     title={"DONE"}
-                     icon={"checkmark-outline"}
-                     onPress={() => {
-                        setTodoTitle(TodoTitleFromTextInput);
-                        editTodo(todo.id);
-                        hideModal();
-                     }}
-                  />
-               </View>
-            </View>
-         </Modal>
+            <AppIcon
+               name={
+                  !todo?.completed
+                     ? "ellipse-outline"
+                     : "checkmark-circle-outline"
+               }
+               size={30}
+               color={colors.green}
+            />
+         </TouchableOpacity>
+         <TextInput
+            onChangeText={(text) => {
+               setTodoTitleFromTextInput(text);
+            }}
+            onEndEditing={() => {
+               setTodoTitle(TodoTitleFromTextInput);
+               editTodo(todo.id);
+            }}
+            style={{
+               fontWeight: "bold",
+               fontSize: 18,
+               color: colors.primary,
+               marginHorizontal: 5,
+               textDecorationLine: todo?.completed ? "line-through" : "none",
+               flex: 1,
+            }}
+         >
+            {todoTitle}
+         </TextInput>
+         <TouchableOpacity
+            onPress={() => deleteTodo(todo.id)}
+            style={styles.actionIcon}
+         >
+            <AppIcon name="close" size={30} color={colors.grayBlue} />
+         </TouchableOpacity>
       </View>
    );
 }
