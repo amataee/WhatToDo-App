@@ -59,7 +59,6 @@ export default function App() {
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      flexDirection: "column",
       backgroundColor: colors.white,
    },
    flatList: {
@@ -69,8 +68,8 @@ const styles = StyleSheet.create({
    noTodosText: {
       alignSelf: "center",
       marginTop: 32,
-      fontSize: 26,
-      fontWeight: "bold",
+      fontSize: 24,
+      fontWeight: "600",
       color: colors.darkGrayBlue,
    },
 });

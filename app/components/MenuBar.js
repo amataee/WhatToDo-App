@@ -36,7 +36,8 @@ export default function MenuBar({todos, setTodos}) {
 
 const styles = StyleSheet.create({
    menuBar: {
-      marginHorizontal: 16,
+      marginHorizontal: 18,
+      paddingVertical: 6,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
