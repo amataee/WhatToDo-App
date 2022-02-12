@@ -1,8 +1,9 @@
 import React from "react";
-import {StyleSheet, View, TextInput, TouchableOpacity} from "react-native";
-import {Ionicons} from "@expo/vector-icons";
+import {StyleSheet, View, TouchableOpacity} from "react-native";
 
 import colors from "../config/colors";
+import AppTextInput from "./AppTextInput";
+import AppIcon from "./AppIcon";
 
 export default function BottomInputContainer({
    todos,
@@ -18,14 +19,14 @@ export default function BottomInputContainer({
             completed: false,
          };
          setTodos([...todos, newTodo]);
-         setTextInput("");
+         setTextInput(null);
       }
    };
 
    return (
       <View style={styles.bottom}>
          <View style={styles.inputContainer}>
-            <TextInput
+            <AppTextInput
                value={textInput}
                placeholder="Add Todo..."
                placeholderTextColor={colors.dark}
@@ -33,12 +34,11 @@ export default function BottomInputContainer({
                onChangeText={(text) => setTextInput(text)}
                onEndEditing={addTodo}
                maxLength={50}
+               style={{fontSize: 16}}
             />
          </View>
-         <TouchableOpacity onPress={addTodo}>
-            <View style={styles.iconContainer}>
-               <Ionicons name="add-outline" color={colors.white} size={30} />
-            </View>
+         <TouchableOpacity onPress={addTodo} style={styles.iconContainer}>
+            <AppIcon name="add-outline" color={colors.white} size={30} />
          </TouchableOpacity>
       </View>
    );
@@ -54,20 +54,15 @@ const styles = StyleSheet.create({
       paddingHorizontal: 12,
    },
    inputContainer: {
-      height: 50,
-      paddingHorizontal: 20,
-      backgroundColor: colors.medium,
       flex: 1,
-      marginVertical: 20,
-      marginRight: 20,
-      borderRadius: 20,
-      justifyContent: "center",
+      marginHorizontal: 4,
+      marginVertical: 8,
    },
    iconContainer: {
       height: 50,
       width: 50,
       backgroundColor: colors.grayBlue,
-      borderRadius: 20,
+      borderRadius: 16,
       justifyContent: "center",
       alignItems: "center",
    },

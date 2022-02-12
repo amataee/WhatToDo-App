@@ -1,18 +1,10 @@
 import React from "react";
-import {
-   StyleSheet,
-   Text,
-   View,
-   TouchableOpacity,
-   Modal,
-   Button,
-} from "react-native";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import {StyleSheet, Text, View, TouchableOpacity, Modal} from "react-native";
 
 import colors from "../config/colors";
 import AppTextInput from "./AppTextInput";
 import AppButton from "./AppButton";
+import AppIcon from "./AppIcon";
 
 export default function ListItem({todo, todos, setTodos}) {
    const [visible, setVisible] = React.useState(false);
@@ -23,7 +15,6 @@ export default function ListItem({todo, todos, setTodos}) {
 
    const showModal = () => setVisible(true);
    const hideModal = () => setVisible(false);
-   const containerStyle = {backgroundColor: "gray", padding: 20};
 
    const markTodoComplete = (todoId) => {
       const newTodosItem = todos.map((item) => {
@@ -58,7 +49,7 @@ export default function ListItem({todo, todos, setTodos}) {
          {!todo?.completed && (
             <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
                <View style={[styles.actionIcon]}>
-                  <Ionicons
+                  <AppIcon
                      name="ellipse-outline"
                      size={30}
                      color={colors.green}
@@ -69,7 +60,7 @@ export default function ListItem({todo, todos, setTodos}) {
          {todo?.completed && (
             <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
                <View style={[styles.actionIcon]}>
-                  <Ionicons
+                  <AppIcon
                      name="checkmark-circle-outline"
                      size={30}
                      color={colors.green}
@@ -96,14 +87,14 @@ export default function ListItem({todo, todos, setTodos}) {
          </View>
          <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
             <View style={styles.actionIcon}>
-               <Ionicons name="close" size={30} color={colors.grayBlue} />
+               <AppIcon name="close" size={30} color={colors.grayBlue} />
             </View>
          </TouchableOpacity>
          <Modal
             animationType="slide"
             visible={visible}
             onDismiss={hideModal}
-            contentContainerStyle={containerStyle}
+            contentContainerStyle={styles.modal}
          >
             <View
                style={{
@@ -113,11 +104,11 @@ export default function ListItem({todo, todos, setTodos}) {
                }}
             >
                <TouchableOpacity onPress={hideModal}>
-                  <Ionicons
+                  <AppIcon
                      name="close"
                      size={42}
                      color={colors.grayBlue}
-                     style={{marginTop: 32}}
+                     style={{marginTop: 16}}
                   />
                </TouchableOpacity>
                <View style={{marginTop: 18, width: "100%"}}>
@@ -144,17 +135,21 @@ export default function ListItem({todo, todos, setTodos}) {
 }
 
 const styles = StyleSheet.create({
-   listItem: {
-      padding: 17,
-      backgroundColor: colors.light,
-      flexDirection: "row",
-      borderRadius: 16,
-      marginVertical: 10,
-   },
    actionIcon: {
-      height: 35,
-      width: 35,
-      justifyContent: "center",
       alignItems: "center",
+      height: 35,
+      justifyContent: "center",
+      width: 35,
+   },
+   listItem: {
+      backgroundColor: colors.light,
+      borderRadius: 16,
+      flexDirection: "row",
+      marginVertical: 10,
+      padding: 17,
+   },
+   modal: {
+      backgroundColor: "gray",
+      padding: 20,
    },
 });

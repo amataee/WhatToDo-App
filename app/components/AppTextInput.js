@@ -1,14 +1,14 @@
 import React from "react";
 import {View, TextInput, StyleSheet} from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 import colors from "../config/colors";
+import AppIcon from "./AppIcon";
 
 function AppTextInput({icon, ...otherProps}) {
    return (
       <View style={styles.container}>
          {icon && (
-            <Ionicons
+            <AppIcon
                name={icon}
                size={20}
                color={colors.medium}

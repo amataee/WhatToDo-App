@@ -1,8 +1,8 @@
 import React from "react";
 import {StyleSheet, Text, TouchableOpacity} from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 import colors from "../config/colors";
+import AppIcon from "./AppIcon";
 
 function AppButton({title, onPress, icon}) {
    return (
@@ -12,7 +12,7 @@ function AppButton({title, onPress, icon}) {
       >
          <Text style={styles.text}>{title}</Text>
          {icon && (
-            <Ionicons
+            <AppIcon
                name={icon}
                size={22}
                color={colors.medium}
