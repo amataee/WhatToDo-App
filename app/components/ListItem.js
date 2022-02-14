@@ -62,6 +62,10 @@ export default function ListItem({todo, todos, setTodos}) {
                setTodoTitle(TodoTitleFromTextInput);
                editTodo(todo.id);
             }}
+            // multiline={true}
+            // maxHeight={65}
+            placeholderTextColor={colors.dark}
+            selectionColor={colors.medium}
             style={{
                fontWeight: "bold",
                fontSize: 18,

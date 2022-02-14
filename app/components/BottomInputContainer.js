@@ -1,9 +1,10 @@
 import React from "react";
-import {StyleSheet, View, TouchableOpacity} from "react-native";
+import {StyleSheet, View} from "react-native";
 
 import colors from "../config/colors";
 import AppTextInput from "./AppTextInput";
 import AppIcon from "./AppIcon";
+import {TouchableOpacity} from "react-native-gesture-handler";
 
 export default function BottomInputContainer({
    todos,
@@ -12,7 +13,7 @@ export default function BottomInputContainer({
    setTextInput,
 }) {
    const addTodo = () => {
-      if (textInput != "") {
+      if (textInput != null) {
          const newTodo = {
             id: Math.random(),
             task: textInput,
@@ -27,18 +28,21 @@ export default function BottomInputContainer({
       <View style={styles.bottom}>
          <View style={styles.inputContainer}>
             <AppTextInput
-               value={textInput}
-               placeholder="Add Todo..."
-               placeholderTextColor={colors.dark}
-               selectionColor={colors.dark}
+               multiline={true}
+               maxHeight={50}
                onChangeText={(text) => setTextInput(text)}
                onEndEditing={addTodo}
-               maxLength={50}
-               style={{fontSize: 16}}
+               placeholder="Add Todo..."
+               style={{flex: 1}}
+               value={textInput}
             />
          </View>
          <TouchableOpacity onPress={addTodo} style={styles.iconContainer}>
-            <AppIcon name="add-outline" color={colors.white} size={30} />
+            <AppIcon
+               name={"add-outline"}
+               size={30}
+               color={colors.white}
+            ></AppIcon>
          </TouchableOpacity>
       </View>
    );

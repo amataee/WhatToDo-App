@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
    },
    flatList: {
       padding: 16,
-      paddingBottom: 100,
+      paddingBottom: 50,
    },
    noTodosText: {
       alignSelf: "center",
-      marginTop: 32,
+      marginTop: 50,
       fontSize: 24,
-      fontWeight: "600",
-      color: colors.darkGrayBlue,
+      fontWeight: "500",
+      color: colors.medium,
    },
 });

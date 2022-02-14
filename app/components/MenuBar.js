@@ -23,13 +23,14 @@ export default function MenuBar({todos, setTodos}) {
    return (
       <SafeAreaView style={styles.menuBar}>
          <Text style={styles.title}>WhatToDo</Text>
-         <AppIcon
-            name={"trash"}
-            size={30}
-            color={todos != 0 ? colors.danger : colors.lightDanger}
-            onPress={clearAllTodos}
-            style={{paddingBottom: 8}}
-         />
+         {todos != 0 ? (
+            <AppIcon
+               name={"trash"}
+               size={28}
+               color={colors.danger}
+               onPress={clearAllTodos}
+            />
+         ) : null}
       </SafeAreaView>
    );
 }
