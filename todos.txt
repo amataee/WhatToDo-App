@@ -1,3 +1,0 @@
-* Dark Mode
-* Persian lang
-* Persian font (Maybe Vazir!)
